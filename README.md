@@ -4,8 +4,17 @@ Amazon has developed a world-class web service that millions of customers use ev
 
 Best of all, Product Advertising API is free. By signing up to become a Product Advertising API developer, you join the tens of thousands of developers who are already realizing financial gains by creating Product Advertising API-driven applications and web stores.
 
+For [PA API](https://affiliate-program.amazon.in/assoc_credentials/home)
+
 # Prerequisites
 * [Python3.10](https://www.python.org/downloads/)
+
+# .env
+The `.env` file is contains the all the `Secret Credential` create the `.env` file in the root folder and past this code inside the file.
+
+*Note: These are all `dummy` data only you have to apply your orginal data*
+
+
 
 # Local Setup
 ### Step 1:
