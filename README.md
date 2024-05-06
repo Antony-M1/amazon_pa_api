@@ -6,3 +6,32 @@ Best of all, Product Advertising API is free. By signing up to become a Product 
 
 # Prerequisites
 * [Python3.10](https://www.python.org/downloads/)
+
+# Local Setup
+### Step 1:
+Clone the project using this command
+
+```
+git clone https://github.com/Antony-M1/amazon_pa_api.git
+```
+
+### Step 2:
+Create the `virtual environment`
+
+```
+python3.10 -m venv .venv
+```
+Activate the env for `windows` use `bash` or `git bash` terminal
+```
+source .venv/Scripts/activate
+```
+for `linux`
+```
+source .venv/bin/activate
+```
+
+### Step 3:
+Install the Requirements
+```
+pip install -r requirements.txt
+```
