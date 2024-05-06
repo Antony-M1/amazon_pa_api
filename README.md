@@ -8,6 +8,17 @@ Best of all, Product Advertising API is free. By signing up to become a Product 
 
 For [PA API](https://affiliate-program.amazon.in/assoc_credentials/home)
 
+[**Using SDK**](https://webservices.amazon.com/paapi5/documentation/quick-start/using-sdk.html#using-sdk)
+
+[**Python**](https://webservices.amazon.com/paapi5/documentation/quick-start/using-sdk.html#python)
+  
+1. Download [`paapi5-python-sdk-and-samples`](https://webservices.amazon.com/paapi5/documentation/assets/archives/paapi5-python-sdk-example.zip) archive and `unzip` it.
+2. Install all the dependencies locally using sudo python `setup.py` install
+3. Open the project in any editor of your preference.
+4. Add your `Access Key`, `Secret Key` in sample code snippet files.
+5. Add valid Partner Tag for the requested marketplace in sample code snippet files.
+6. Run code sample like `sample_get_items_api.py` using the command `python sample_get_items_api.py`.
+
 # Prerequisites
 * [Python3.10](https://www.python.org/downloads/)
 
