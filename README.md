@@ -4,4 +4,5 @@ Amazon has developed a world-class web service that millions of customers use ev
 
 Best of all, Product Advertising API is free. By signing up to become a Product Advertising API developer, you join the tens of thousands of developers who are already realizing financial gains by creating Product Advertising API-driven applications and web stores.
 
-
+# Prerequisites
+* [Python3.10](https://www.python.org/downloads/)
