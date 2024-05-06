@@ -15,7 +15,10 @@ For [PA API](https://affiliate-program.amazon.in/assoc_credentials/home)
 The `.env` file is contains the all the `Secret Credential` create the `.env` file in the root folder and past this code inside the file.
 
 *Note: These are all `dummy` data only you have to apply your orginal data*
-
+```.env
+AMAZON_PA_ACCESS_KEY=<MY_ACCESS_KEY>
+AMAZON_PA_SECRET_KEY=<MY_SECRET_KEY>
+```
 
 
 # Local Setup
