@@ -37,6 +37,16 @@ from paapi5_python_sdk.models.get_items_resource import GetItemsResource
 from paapi5_python_sdk.models.partner_type import PartnerType
 from paapi5_python_sdk.rest import ApiException
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+AMAZON_PA_ACCESS_KEY = os.environ.get("AMAZON_PA_ACCESS_KEY")
+AMAZON_PA_SECRET_KEY = os.environ.get("AMAZON_PA_SECRET_KEY")
+AMAZON_PARTNER_TAG = os.environ.get("AMAZON_PARTNER_TAG")
+AMAZON_HOST = os.environ.get("AMAZON_HOST")
+AMAZON_REGION = os.environ.get("AMAZON_REGION")
 
 def parse_response(item_response_list):
     """
@@ -53,18 +63,20 @@ def parse_response(item_response_list):
 def get_items():
     """ Following are your credentials """
     """ Please add your access key here """
-    access_key = "<YOUR ACCESS KEY>"
+    access_key = AMAZON_PA_ACCESS_KEY
 
     """ Please add your secret key here """
-    secret_key = "<YOUR SECRET KEY>"
+    secret_key = AMAZON_PA_SECRET_KEY
 
     """ Please add your partner tag (store/tracking id) here """
-    partner_tag = "<YOUR PARTNER TAG>"
+    partner_tag = AMAZON_PARTNER_TAG
 
     """ PAAPI host and region to which you want to send request """
     """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region"""
-    host = "webservices.amazon.com"
-    region = "us-east-1"
+    # host = "webservices.amazon.com"
+    # region = "us-east-1"
+    host = AMAZON_HOST
+    region = AMAZON_REGION
 
     """ API declaration """
     default_api = DefaultApi(
@@ -161,18 +173,20 @@ def get_items():
 def get_items_with_http_info():
     """ Following are your credentials """
     """ Please add your access key here """
-    access_key = "<YOUR ACCESS KEY>"
+    access_key = AMAZON_PA_ACCESS_KEY
 
     """ Please add your secret key here """
-    secret_key = "<YOUR SECRET KEY>"
+    secret_key = AMAZON_PA_SECRET_KEY
 
     """ Please add your partner tag (store/tracking id) here """
-    partner_tag = "<YOUR PARTNER TAG>"
+    partner_tag = AMAZON_PARTNER_TAG
 
     """ PAAPI host and region to which you want to send request """
     """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region"""
-    host = "webservices.amazon.com"
-    region = "us-east-1"
+    # host = "webservices.amazon.com"
+    # region = "us-east-1"
+    host = AMAZON_HOST
+    region = AMAZON_REGION
 
     """ API declaration """
     default_api = DefaultApi(
@@ -276,18 +290,20 @@ def get_items_with_http_info():
 def get_items_async():
     """ Following are your credentials """
     """ Please add your access key here """
-    access_key = "<YOUR ACCESS KEY>"
+    access_key = AMAZON_PA_ACCESS_KEY
 
     """ Please add your secret key here """
-    secret_key = "<YOUR SECRET KEY>"
+    secret_key = AMAZON_PA_SECRET_KEY
 
     """ Please add your partner tag (store/tracking id) here """
-    partner_tag = "<YOUR PARTNER TAG>"
+    partner_tag = AMAZON_PARTNER_TAG
 
     """ PAAPI host and region to which you want to send request """
     """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region"""
-    host = "webservices.amazon.com"
-    region = "us-east-1"
+    # host = "webservices.amazon.com"
+    # region = "us-east-1"
+    host = AMAZON_HOST
+    region = AMAZON_REGION
 
     """ API declaration """
     default_api = DefaultApi(
@@ -382,5 +398,5 @@ def get_items_async():
 
 
 get_items()
-# get_items_with_http_info()
-# get_items_async()
+get_items_with_http_info()
+get_items_async()
