@@ -3,9 +3,7 @@
 ![image](https://github.com/Antony-M1/amazon_pa_api/assets/96291963/6ab99cfb-71b4-42f9-af89-374d538c19d1)
 
 
-### Certainly! Here's a short disclaimer and thank you note that you can include in your project:
-
-Disclaimer and Acknowledgment
+### Disclaimer and Acknowledgment
 This project utilizes sample code provided by Amazon for the Product Advertising API (PA API). The code has been adapted to meet the specific needs of this project.
 
 ### Acknowledgment
