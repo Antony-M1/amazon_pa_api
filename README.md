@@ -1,176 +1,62 @@
-# Product Advertising API 5.0 SDK for Python
+# [Amazon PA API](https://webservices.amazon.com/paapi5/documentation/)
 
+![image](https://github.com/Antony-M1/amazon_pa_api/assets/96291963/6ab99cfb-71b4-42f9-af89-374d538c19d1)
 
-[![pypi version](http://img.shields.io/pypi/v/paapi5-python-sdk.svg?style=flat)](https://pypi.python.org/pypi/paapi5-python-sdk/)
-[![pypi downloads](https://img.shields.io/pypi/dm/paapi5-python-sdk.svg.svg?style=flat)](https://pypi.python.org/pypi/paapi5-python-sdk/)
+Amazon has developed a world-class web service that millions of customers use every day. As a developer, you can build Product Advertising API applications that leverage this robust, scalable, and reliable technology. You get access to a lot of the data used by Amazon including the items for sale, customer reviews, seller reviews, as well as most of the functionality you see on Amazon.com, such as finding items, displaying customer reviews, and product promotions. Product Advertising API operations open the doors to Amazon's databases so that you can take advantage of Amazon's sophisticated e-commerce data and functionality. Build your own web store to sell Amazon items or your own items.
 
+Best of all, Product Advertising API is free. By signing up to become a Product Advertising API developer, you join the tens of thousands of developers who are already realizing financial gains by creating Product Advertising API-driven applications and web stores.
 
-This repository contains the official Product Advertising API 5.0 Python SDK called **paapi5-python-sdk** that allows you to access the [Product Advertising API](https://webservices.amazon.com/paapi5/documentation/index.html) from your Python app.
+For [PA API](https://affiliate-program.amazon.in/assoc_credentials/home)
 
-## Requirements
+[**Using SDK**](https://webservices.amazon.com/paapi5/documentation/quick-start/using-sdk.html#using-sdk)
 
-Python 2.7 and 3.4+
+[**Python**](https://webservices.amazon.com/paapi5/documentation/quick-start/using-sdk.html#python)
+  
+1. Download [`paapi5-python-sdk-and-samples`](https://webservices.amazon.com/paapi5/documentation/assets/archives/paapi5-python-sdk-example.zip) archive and `unzip` it.
+2. Install all the dependencies locally using sudo python `setup.py` install
+3. Open the project in any editor of your preference.
+4. Add your `Access Key`, `Secret Key` in sample code snippet files.
+5. Add valid Partner Tag for the requested marketplace in sample code snippet files.
+6. Run code sample like `sample_get_items_api.py` using the command `python sample_get_items_api.py`.
 
-## Installation & Usage
+# Prerequisites
+* [Python3.10](https://www.python.org/downloads/)
 
-### pip install
+# .env
+The `.env` file is contains the all the `Secret Credential` create the `.env` file in the root folder and past this code inside the file.
 
-You can directly install it from pip using:
-
-```sh
-pip install paapi5-python-sdk
+*Note: These are all `dummy` data only you have to apply your orginal data*
+```.env
+AMAZON_PA_ACCESS_KEY=<MY_ACCESS_KEY>
+AMAZON_PA_SECRET_KEY=<MY_SECRET_KEY>
 ```
 
-Or, you may also install directly from Github
 
-```sh
-pip install git+https://github.com/amzn/paapi5-python-sdk.git
+# Local Setup
+### Step 1:
+Clone the project using this command
+
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/amzn/paapi5-python-sdk.git`)
-
-Then import the package:
-```python
-import paapi5_python_sdk 
+git clone https://github.com/Antony-M1/amazon_pa_api.git
 ```
 
-### Setuptools
+### Step 2:
+Create the `virtual environment`
 
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
-
-```sh
-python setup.py install --user
 ```
-(or `sudo python setup.py install` to install the package for all users)
-
-Then import the package:
-```python
-import paapi5_python_sdk
+python3.10 -m venv .venv
 ```
-
-## Getting Started
-
-Please follow the [installation procedure](#installation--usage) and then run the following:
-
-Simple example for [SearchItems](https://webservices.amazon.com/paapi5/documentation/search-items.html) to discover Amazon products with the keyword 'Harry Potter' in Books category:
-
-```python
-from paapi5_python_sdk.api.default_api import DefaultApi
-from paapi5_python_sdk.models.partner_type import PartnerType
-from paapi5_python_sdk.rest import ApiException
-from paapi5_python_sdk.models.search_items_request import SearchItemsRequest
-from paapi5_python_sdk.models.search_items_resource import SearchItemsResource
-
-
-def search_items():
-
-    """ Following are your credentials """
-    """ Please add your access key here """
-    access_key = "<YOUR ACCESS KEY>"
-
-    """ Please add your secret key here """
-    secret_key = "<YOUR SECRET KEY>"
-
-    """ Please add your partner tag (store/tracking id) here """
-    partner_tag = "<YOUR PARTNER TAG>"
-
-    """ PAAPI host and region to which you want to send request """
-    """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region"""
-    host = "webservices.amazon.com"
-    region = "us-east-1"
-
-    """ API declaration """
-    default_api = DefaultApi(
-        access_key=access_key, secret_key=secret_key, host=host, region=region
-    )
-
-    """ Request initialization"""
-
-    """ Specify keywords """
-    keywords = "Harry Potter"
-
-    """ Specify the category in which search request is to be made """
-    """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/use-cases/organization-of-items-on-amazon/search-index.html """
-    search_index = "Books"
-
-    """ Specify item count to be returned in search result """
-    item_count = 1
-
-    """ Choose resources you want from SearchItemsResource enum """
-    """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter """
-    search_items_resource = [
-        SearchItemsResource.ITEMINFO_TITLE,
-        SearchItemsResource.OFFERS_LISTINGS_PRICE,
-    ]
-
-    """ Forming request """
-    try:
-        search_items_request = SearchItemsRequest(
-            partner_tag=partner_tag,
-            partner_type=PartnerType.ASSOCIATES,
-            keywords=keywords,
-            search_index=search_index,
-            item_count=item_count,
-            resources=search_items_resource,
-        )
-    except ValueError as exception:
-        print("Error in forming SearchItemsRequest: ", exception)
-        return
-
-    try:
-        """ Sending request """
-        response = default_api.search_items(search_items_request)
-
-        print("API called Successfully")
-        print("Complete Response:", response)
-
-        """ Parse response """
-        if response.search_result is not None:
-            print("Printing first item information in SearchResult:")
-            item_0 = response.search_result.items[0]
-            if item_0 is not None:
-                if item_0.asin is not None:
-                    print("ASIN: ", item_0.asin)
-                if item_0.detail_page_url is not None:
-                    print("DetailPageURL: ", item_0.detail_page_url)
-                if (
-                    item_0.item_info is not None
-                    and item_0.item_info.title is not None
-                    and item_0.item_info.title.display_value is not None
-                ):
-                    print("Title: ", item_0.item_info.title.display_value)
-                if (
-                    item_0.offers is not None
-                    and item_0.offers.listings is not None
-                    and item_0.offers.listings[0].price is not None
-                    and item_0.offers.listings[0].price.display_amount is not None
-                ):
-                    print(
-                        "Buying Price: ", item_0.offers.listings[0].price.display_amount
-                    )
-        if response.errors is not None:
-            print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-            print("Error code", response.errors[0].code)
-            print("Error message", response.errors[0].message)
-
-    except ApiException as exception:
-        print("Error calling PA-API 5.0!")
-        print("Status code:", exception.status)
-        print("Errors :", exception.body)
-        print("Request ID:", exception.headers["x-amzn-RequestId"])
-
-    except TypeError as exception:
-        print("TypeError :", exception)
-
-    except ValueError as exception:
-        print("ValueError :", exception)
-
-    except Exception as exception:
-        print("Exception :", exception)
- 
-search_items()
+Activate the env for `windows` use `bash` or `git bash` terminal
+```
+source .venv/Scripts/activate
+```
+for `linux`
+```
+source .venv/bin/activate
 ```
 
-Complete documentation, installation instructions, and examples are available [here](https://webservices.amazon.com/paapi5/documentation/index.html).
-
-## License
-This SDK is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0), see LICENSE.txt and NOTICE.txt for more information.
+### Step 3:
+Install the Requirements
+```
+pip install -r requirements.txt
+```
