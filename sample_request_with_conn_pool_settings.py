@@ -1,64 +1,42 @@
-# Product Advertising API 5.0 SDK for Python
+# -*- coding: utf-8 -*-
 
+"""
+ Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
-[![pypi version](http://img.shields.io/pypi/v/paapi5-python-sdk.svg?style=flat)](https://pypi.python.org/pypi/paapi5-python-sdk/)
-[![pypi downloads](https://img.shields.io/pypi/dm/paapi5-python-sdk.svg.svg?style=flat)](https://pypi.python.org/pypi/paapi5-python-sdk/)
+ Licensed under the Apache License, Version 2.0 (the "License").
+ You may not use this file except in compliance with the License.
+ A copy of the License is located at
 
+     http://www.apache.org/licenses/LICENSE-2.0
 
-This repository contains the official Product Advertising API 5.0 Python SDK called **paapi5-python-sdk** that allows you to access the [Product Advertising API](https://webservices.amazon.com/paapi5/documentation/index.html) from your Python app.
+ or in the "license" file accompanying this file. This file is distributed
+ on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ express or implied. See the License for the specific language governing
+ permissions and limitations under the License.
+"""
 
-## Requirements
+"""
+ ProductAdvertisingAPI
+ 
+ https://webservices.amazon.com/paapi5/documentation/index.html
+ 
+"""
 
-Python 2.7 and 3.4+
+"""
+This sample code snippet is for ProductAdvertisingAPI 5.0's SearchItems API
 
-## Installation & Usage
+For more details, refer:
+https://webservices.amazon.com/paapi5/documentation/search-items.html
 
-### pip install
+"""
 
-You can directly install it from pip using:
-
-```sh
-pip install paapi5-python-sdk
-```
-
-Or, you may also install directly from Github
-
-```sh
-pip install git+https://github.com/amzn/paapi5-python-sdk.git
-```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/amzn/paapi5-python-sdk.git`)
-
-Then import the package:
-```python
-import paapi5_python_sdk 
-```
-
-### Setuptools
-
-Install via [Setuptools](http://pypi.python.org/pypi/setuptools).
-
-```sh
-python setup.py install --user
-```
-(or `sudo python setup.py install` to install the package for all users)
-
-Then import the package:
-```python
-import paapi5_python_sdk
-```
-
-## Getting Started
-
-Please follow the [installation procedure](#installation--usage) and then run the following:
-
-Simple example for [SearchItems](https://webservices.amazon.com/paapi5/documentation/search-items.html) to discover Amazon products with the keyword 'Harry Potter' in Books category:
-
-```python
 from paapi5_python_sdk.api.default_api import DefaultApi
+from paapi5_python_sdk.api_client import ApiClient
+from paapi5_python_sdk.configuration import Configuration
 from paapi5_python_sdk.models.partner_type import PartnerType
-from paapi5_python_sdk.rest import ApiException
 from paapi5_python_sdk.models.search_items_request import SearchItemsRequest
 from paapi5_python_sdk.models.search_items_resource import SearchItemsResource
+from paapi5_python_sdk.rest import ApiException
 
 
 def search_items():
@@ -74,14 +52,26 @@ def search_items():
     partner_tag = "<YOUR PARTNER TAG>"
 
     """ PAAPI host and region to which you want to send request """
-    """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region"""
+    """ For more details refer: https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region """
     host = "webservices.amazon.com"
     region = "us-east-1"
 
-    """ API declaration """
-    default_api = DefaultApi(
-        access_key=access_key, secret_key=secret_key, host=host, region=region
+    """ You can specify max connection pool size here. By default it's cpu_count * 5."""
+    connetion_pool_max_size = 12
+    configuration = Configuration()
+    configuration.__init__(connetion_pool_max_size)
+
+    """ API Client Declaration """
+    api_client = ApiClient(
+        access_key=access_key,
+        secret_key=secret_key,
+        host=host,
+        region=region,
+        configuration=configuration,
     )
+
+    """ API declaration """
+    default_api = DefaultApi(api_client=api_client)
 
     """ Request initialization"""
 
@@ -90,7 +80,7 @@ def search_items():
 
     """ Specify the category in which search request is to be made """
     """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/use-cases/organization-of-items-on-amazon/search-index.html """
-    search_index = "Books"
+    search_index = "All"
 
     """ Specify item count to be returned in search result """
     item_count = 1
@@ -98,6 +88,7 @@ def search_items():
     """ Choose resources you want from SearchItemsResource enum """
     """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter """
     search_items_resource = [
+        SearchItemsResource.IMAGES_PRIMARY_LARGE,
         SearchItemsResource.ITEMINFO_TITLE,
         SearchItemsResource.OFFERS_LISTINGS_PRICE,
     ]
@@ -166,11 +157,6 @@ def search_items():
 
     except Exception as exception:
         print("Exception :", exception)
- 
+
+
 search_items()
-```
-
-Complete documentation, installation instructions, and examples are available [here](https://webservices.amazon.com/paapi5/documentation/index.html).
-
-## License
-This SDK is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0), see LICENSE.txt and NOTICE.txt for more information.
