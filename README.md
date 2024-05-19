@@ -27,8 +27,14 @@ The `.env` file is contains the all the `Secret Credential` create the `.env` fi
 
 *Note: These are all `dummy` data only you have to apply your orginal data*
 ```.env
-AMAZON_PA_ACCESS_KEY=<MY_ACCESS_KEY>
-AMAZON_PA_SECRET_KEY=<MY_SECRET_KEY>
+# Amazon PA API
+AMAZON_PA_ACCESS_KEY=<YOUR_ACCESS_KEY>
+AMAZON_PA_SECRET_KEY=<YOUR_SECRET_KEY>
+AMAZON_PARTNER_TAG=<YOUR_PARTNER_TAG>
+
+# Based on country, Host & Region https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html#host-and-region
+AMAZON_HOST=<YOUR_COUNTRY_HOST>
+AMAZON_REGION=<YOUR_COUNTRY_REGION>
 ```
 
 
